@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ThalKod/node-2fa#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.3"
   }
 }
