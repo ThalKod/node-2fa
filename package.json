@@ -1,0 +1,22 @@
+{
+  "name": "2fa",
+  "version": "1.0.0",
+  "description": "Two factor authentification with nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThalKod/node-2fa.git"
+  },
+  "author": "Thal Marcelin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThalKod/node-2fa/issues"
+  },
+  "homepage": "https://github.com/ThalKod/node-2fa#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
