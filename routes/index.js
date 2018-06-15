@@ -10,6 +10,9 @@ router.get("/", (req, res)=>{
     res.redirect("/login");
 });
 
+router.get("/dashboard", (req, res)=>{
+    res.send("Dashboard");
+});
 
 // rendering registration page
 router.get("/register", (req, res)=>{
@@ -24,9 +27,8 @@ router.post("/register", (req, res)=>{
             console.log(err);
             res.render("register");
         }
-        console.log(rUser);
         passport.authenticate("local")(req, res, ()=>{
-            console.log("registered");
+            res.redirect("/dashboard");
         });
     });
 });
