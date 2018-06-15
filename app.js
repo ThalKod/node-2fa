@@ -14,7 +14,6 @@ app.set("view engine", "ejs");
 // middlewares
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(routes);
 
 // configure mongoose and DB connection
 mongoose.Promise = global.Promise;
@@ -42,6 +41,7 @@ passport.use(new localStartegy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(routes);
 
 
 

@@ -4,12 +4,12 @@ const User = require("../models/user");
 const passport = require("passport");
 
 
-
 // rendering signin page
 router.get("/", (req, res)=>{
     res.redirect("/login");
 });
 
+// rendering the dashboard
 router.get("/dashboard", (req, res)=>{
     res.send("Dashboard");
 });
@@ -34,9 +34,18 @@ router.post("/register", (req, res)=>{
 });
 
 
-
+// rendering the login page
 router.get("/login", (req, res)=>{
     res.render("login");
 });
+
+// handling login
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/login"
+}), (req, res)=>{
+    console.log("login");
+});
+
 
 module.exports = router;
