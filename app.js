@@ -1,12 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const User = require("./models/user");
-const passport = require("passport");
-const localStartegy = require("passport-local");
 const bodyParser = require("body-parser");
-const expressSession = require("express-session");
 const routes  = require("./routes/index");
+const passportInit = require("./config/passport");
 
 // Configure app
 app.set("view engine", "ejs");
@@ -28,18 +25,7 @@ mongoose.connect("mongodb://localhost/node2fa", { reconnectTries: Number.MAX_VAL
 });
 
 // passport configuration
-app.use((expressSession)({
-    secret: "a4f8542071f-c33873-443447-8ee2321",
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(new localStartegy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passportInit(app);
 
 app.use(routes);
 
