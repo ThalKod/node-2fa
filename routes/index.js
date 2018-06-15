@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
+const middlewares = require("../middlewares/index");
 
 
 // rendering signin page
@@ -10,7 +11,7 @@ router.get("/", (req, res)=>{
 });
 
 // rendering the dashboard
-router.get("/dashboard", (req, res)=>{
+router.get("/dashboard", middlewares.isLoggedIn, (req, res)=>{
     res.send("Dashboard");
 });
 
