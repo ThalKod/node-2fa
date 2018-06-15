@@ -6,6 +6,7 @@ const passport = require("passport");
 const localStartegy = require("passport-local");
 const bodyParser = require("body-parser");
 const expressSession = require("express-session");
+const routes  = require("./routes/index");
 
 // Configure app
 app.set("view engine", "ejs");
@@ -13,6 +14,7 @@ app.set("view engine", "ejs");
 // middlewares
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(routes);
 
 // configure mongoose and DB connection
 mongoose.Promise = global.Promise;
@@ -40,18 +42,7 @@ passport.use(new localStartegy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Routes
-app.get("/", (req, res)=>{
-    res.redirect("/login");
-});
 
-app.get("/register", (req, res)=>{
-    res.render("register");
-})
-
-app.get("/login", (req, res)=>{
-    res.render("login");
-});
 
 
 
