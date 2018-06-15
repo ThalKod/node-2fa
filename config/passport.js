@@ -1,5 +1,5 @@
 const expressSession = require("express-session");
-const localStartegy = require("passport-local");
+const localStrategy = require("passport-local");
 const passport = require("passport");
 const User = require("../models/user");
 
@@ -14,7 +14,7 @@ const init = (app)=>{
     app.use(passport.initialize());
     app.use(passport.session());
     
-    passport.use(new localStartegy(User.authenticate()));
+    passport.use(new localStrategy(User.authenticate()));
     passport.serializeUser(User.serializeUser());
     passport.deserializeUser(User.deserializeUser());
 };  
