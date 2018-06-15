@@ -5,7 +5,8 @@ const User = require("./models/user");
 const passport = require("passport");
 const localStartegy = require("passport-local");
 const bodyParser = require("body-parser");
-const expressSeesion = require("express-session");
+const expressSession = require("express-session");
+
 // Configure app
 app.set("view engine", "ejs");
 
