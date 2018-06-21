@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: String
+    password: String,
+    githubId: String
 });
 
 userSchema.plugin(passportLocalMongoose);

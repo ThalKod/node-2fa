@@ -48,6 +48,17 @@ router.post("/login", passport.authenticate("local", {
     console.log("login");
 });
 
+// hanling login with github
+router.get('/login/github', passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+// Github Oauth Callback
+router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }),
+    (req, res)=> {
+    // Successful authentication, redirect home.
+    res.redirect('/dashboard');
+  });
+
+
 // loggin out
 router.get("/logout", (req, res)=>{
     req.logout();
