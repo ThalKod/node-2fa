@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
-const passport = require("passport");
 const middlewares = require("../middlewares/index");
+const passportLocal = require("../auth/local");
+const passportGithub = require("../auth/github");
+
 
 
 // rendering signin page
@@ -37,11 +39,14 @@ router.post("/register", (req, res)=>{
 
 // rendering the login page
 router.get("/login", (req, res)=>{
+    if(req.user){
+        return res.redirect("/dashboard");
+    }
     res.render("login");
 });
 
 // handling login
-router.post("/login", passport.authenticate("local", {
+router.post("/login", passportLocal.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/login"
 }), (req, res)=>{
@@ -49,10 +54,14 @@ router.post("/login", passport.authenticate("local", {
 });
 
 // hanling login with github
-router.get('/login/github', passport.authenticate('github', { scope: [ 'user:email' ] }));
+router.get('/login/github', passportGithub.authenticate('github', { scope: [ 'user:email' ] }),
+    (req,res)=>{
+        // console.log("In /login/github :",req.user);
+    }
+);
 
 // Github Oauth Callback
-router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }),
+router.get('/auth/github/callback', passportGithub.authenticate('github', { failureRedirect: '/login' }),
     (req, res)=> {
     // Successful authentication, redirect home.
     res.redirect('/dashboard');

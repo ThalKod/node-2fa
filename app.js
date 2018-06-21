@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
 const routes  = require("./routes/index");
-const passportInit = require("./config/passport");
+const expressSession = require("express-session");
+const passport = require("passport");
+
 
 // Configure app
 app.set("view engine", "ejs");
@@ -11,6 +13,16 @@ app.set("view engine", "ejs");
 // middlewares
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
+
+// Configure passport
+app.use((expressSession)({
+    secret: "a4f8542071f-c33873-443447-8ee2321",
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // configure mongoose and DB connection
 mongoose.Promise = global.Promise;
@@ -23,9 +35,6 @@ mongoose.connect("mongodb://localhost/node2fa", { reconnectTries: Number.MAX_VAL
     console.log("Connection Error : ", dbErr.message);
     process.exit(1);
 });
-
-// passport configuration
-passportInit(app);
 
 app.use(routes);
 
