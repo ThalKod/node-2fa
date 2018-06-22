@@ -14,7 +14,7 @@ router.get("/", (req, res)=>{
 
 // rendering the dashboard
 router.get("/dashboard", middlewares.isLoggedIn, (req, res)=>{
-    res.send("Dashboard");
+    res.render("dashboard");
 });
 
 // rendering registration page
