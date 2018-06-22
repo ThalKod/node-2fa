@@ -14,7 +14,12 @@ router.get("/", (req, res)=>{
 
 // rendering the dashboard
 router.get("/dashboard", middlewares.isLoggedIn, (req, res)=>{
-    res.render("dashboard");
+    User.findById(req.user.id).then((rUser)=>{
+        if(!rUser){
+            return res.redirect("/login");
+        }
+        res.render("dashboard", {username: rUser.username});
+    })
 });
 
 // rendering registration page
@@ -30,7 +35,7 @@ router.post("/register", (req, res)=>{
             console.log(err);
             res.render("register");
         }
-        passport.authenticate("local")(req, res, ()=>{
+        passportLocal.authenticate("local")(req, res, ()=>{
             res.redirect("/dashboard");
         });
     });

@@ -30,15 +30,15 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-passport.serializeUser(function(user, done){
-    console.log("1:",user._id);
-    done(null, user._id);
-});
+// passport.serializeUser(function(user, done){
+//     console.log("1:",user._id);
+//     done(null, user._id);
+// });
 
-passport.deserializeUser(function(id, done){
-    User.findById(id, (err, user)=>{
-        done(err, user);
-    });
-});
+// passport.deserializeUser(function(id, done){
+//     User.findById(id, (err, user)=>{
+//         done(err, user);
+//     });
+// });
 
 module.exports = passport;

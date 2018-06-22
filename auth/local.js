@@ -7,7 +7,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 passport.serializeUser(function(user, done){
-    console.log("2: ",user._id);
     done(null, user._id);
 });
 
