@@ -5,7 +5,8 @@ body {
     font-weight: 300;
     color: #888;
     line-height: 30px;
-    text-align: center;
+	text-align: center;
+	margin-bottom: 50px;
 }
 
 strong { font-weight: 500; }
@@ -250,6 +251,7 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 .onoffswitch {
 	position: relative; width: 90px;
 	margin-left: 100px;
+	margin-bottom: 10px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {
@@ -280,3 +282,36 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
 }
+
+/* 2fa box */
+.tfa-box{
+	margin: auto;
+	width: 75%;
+	border: 1px solid black;
+}
+
+.tfa-code-input{
+	font-size: 20px;
+	width: 75%;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+.color-red{
+	color: red;
+}
+
+.btn-green{
+	background-color: #4AC234;
+	width: 100px;
+	font-size: 15px;
+	border-radius: 5px;
+}
+
+.btn-yellow{
+	background-color: #f0582a;
+	width: 100px;
+	font-size: 15px;
+	border-radius: 5px;
+}
+
