@@ -8,7 +8,14 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     password: String,
-    githubId: String
+    githubId: String,
+    secret_key: {
+        type: String,
+    },
+    TFA:{
+        type: Boolean,
+        default: false
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);
