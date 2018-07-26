@@ -3,7 +3,11 @@ const tfa_box = $(".tfa-box");
 
 checkbox.change(function(){
     if(this.checked){
-        tfa_box.show();
+        $.post("users/" + username + "/secret")
+            .done(function(data){
+                console.log(data);
+            });
+        // tfa_box.show();
     }else{
         tfa_box.hide();
     }
