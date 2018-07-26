@@ -14,7 +14,7 @@ router.post("/users/secret", isLoggedIn, (req, res)=>{
             rUser.secret_key = secret.base32;
             rUser.save();
 
-            res.json({ error: false, data: { secret: secret.base32, secret_uri:  image_data}})
+            res.json({ error: false, data: { secret: secret.base32, secret_uri:  image_data}});
           });
         
     }).catch((e)=>{
