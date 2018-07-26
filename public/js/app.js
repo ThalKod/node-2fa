@@ -19,7 +19,7 @@ function update(data){
         <h3>SETTING UP GOOGLE AUTHENTICATOR (OR OTHER TOTP APP)</h3>
         <hr>
         <p class="color-red">IMPORTANT, READ BEFORE CONTINUING: Please make sure that you have an email set in your account settings. If you don't have one and you lose access to your 2FA app for any reason, you won't be able to get back into your account. (I'm Kidding it's just a test ;) </p>
-        <img src="http://via.placeholder.com/185x200" alt="">
+        <img src="${data.data.secret_uri}" alt="">
         <p>Manual key entry: <b>${data.data.secret}</b></p>
         <p>To enable 2 Factor Authentication, scan the QR code above into your favourite authenticator app such as <b>Google Authenticator</b>  or <b>Authy</b> . Once done, enter the access token you get from the app into the text box below, it looks like <b>123456</b> .</p>
 
