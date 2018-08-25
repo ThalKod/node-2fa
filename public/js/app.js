@@ -4,7 +4,7 @@ const tfa_box = $(".tfa-box");
 
 checkbox.change(function(){
     if(this.checked){
-        $.post("users/secret",{ username })
+        $.post("users/secret")
             .done(function(data){
                 update(data);
             });
@@ -32,5 +32,5 @@ function update(data){
     `);
 
     tfa_box.show();
-
+ 
 }
