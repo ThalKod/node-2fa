@@ -316,3 +316,10 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 	border-radius: 5px;
 }
 
+/* Activate */
+
+.activate{
+	font-size: 25px;
+	display: none;
+	color: #4AC234;
+}

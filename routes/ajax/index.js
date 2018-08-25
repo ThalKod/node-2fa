@@ -12,12 +12,14 @@ router.post("/users/secret", isLoggedIn, (req, res)=>{
         if(!rUser){
             res.redirect("/");
         }
+
+        const activate = rUser.TFA;
         const secret = speakeasy.generateSecret({length: 20});
         QRCode.toDataURL(secret.otpauth_url,(err, image_data)=>{
             rUser.secret_key = secret.base32;
             rUser.save();
 
-            res.json({ error: false, data: { secret: secret.base32, secret_uri:  image_data}});
+            res.json({ error: false, activate, data: { secret: secret.base32, secret_uri:  image_data}});
           });
         
     }).catch((e)=>{

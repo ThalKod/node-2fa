@@ -1,11 +1,25 @@
 const checkbox = $(".onoffswitch-checkbox");
 const tfa_box = $(".tfa-box"); 
+const activate = $(".activate");
+
+$(function() {
+    if(checkbox.prop("checked")){
+       promptMessage();
+    }
+});
 
 checkbox.change(function(){
     if(this.checked){
         $.post("users/secret")
             .done(function(data){
-                update(data);
+                if(!data.error){
+                    console.log(data.activate);
+                    if(data.activate){
+                        promptMessage();
+                    }else{
+                        promptSetup(data);
+                    }
+                }
             });
     }else{
         tfa_box.hide();
@@ -14,7 +28,7 @@ checkbox.change(function(){
 
 
 
-function update(data){
+function promptSetup(data){
 
         tfa_box.html(`
         <h3>SETTING UP GOOGLE AUTHENTICATOR (OR OTHER TOTP APP)</h3>
@@ -33,4 +47,9 @@ function update(data){
 
     tfa_box.show();
  
+}
+
+function promptMessage(){
+    activate.html("<p>Activate !</p>");
+    activate.show();
 }
