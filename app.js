@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const routes  = require("./routes/index");
 const ajax = require("./routes/ajax/index");
+const tfa = require("./routes/tfa");
 const expressSession = require("express-session");
 const passport = require("passport");
 
@@ -39,3 +40,4 @@ mongoose.connect("mongodb://localhost/node2fa", { reconnectTries: Number.MAX_VAL
 
 app.use(routes);
 app.use(ajax);
+app.use(tfa);

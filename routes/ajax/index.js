@@ -7,8 +7,11 @@ const QRCode = require('qrcode');
 
 
 router.post("/users/secret", isLoggedIn, (req, res)=>{
-    
+
     User.findById(req.user._id).then((rUser)=>{
+        if(!rUser){
+            res.redirect("/");
+        }
         const secret = speakeasy.generateSecret({length: 20});
         QRCode.toDataURL(secret.otpauth_url,(err, image_data)=>{
             rUser.secret_key = secret.base32;

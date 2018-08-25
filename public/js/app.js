@@ -1,7 +1,6 @@
 const checkbox = $(".onoffswitch-checkbox");
 const tfa_box = $(".tfa-box"); 
 
-
 checkbox.change(function(){
     if(this.checked){
         $.post("users/secret")
@@ -13,6 +12,8 @@ checkbox.change(function(){
     }
 });
 
+
+
 function update(data){
 
         tfa_box.html(`
@@ -23,11 +24,10 @@ function update(data){
         <p>Manual key entry: <b>${data.data.secret}</b></p>
         <p>To enable 2 Factor Authentication, scan the QR code above into your favourite authenticator app such as <b>Google Authenticator</b>  or <b>Authy</b> . Once done, enter the access token you get from the app into the text box below, it looks like <b>123456</b> .</p>
 
-        <form action="">
+        <form action="/activate/tfa" method="POST">
             <label for="tfa-code"> <b>Your 2FA token from the app:</b> </label> <br>
             <input class="tfa-code-input" placeholder="e.g. 123446" type="text" name="tfa-code" id="tfa-code"> <br>
             <button class="btn-green" type="submit">Set Up 2FA</button> 
-            <button class="btn-yellow" type="reset">Cancel</button>
         </form>
     `);
 
