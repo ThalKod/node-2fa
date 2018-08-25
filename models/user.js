@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     secret_key: {
         type: String,
     },
-    TFA:{
+    tfa:{
         type: Boolean,
         default: false
     }

@@ -13,7 +13,7 @@ router.post("/users/secret", isLoggedIn, (req, res)=>{
             res.redirect("/");
         }
 
-        const activate = rUser.TFA;
+        const activate = rUser.tfa;
         const secret = speakeasy.generateSecret({length: 20});
         QRCode.toDataURL(secret.otpauth_url,(err, image_data)=>{
             rUser.secret_key = secret.base32;
@@ -27,6 +27,15 @@ router.post("/users/secret", isLoggedIn, (req, res)=>{
         res.json({ error: true, data: e})
     });
 }); 
+
+router.post("/disable/tfa", isLoggedIn, (req, res)=>{
+    User.findByIdAndUpdate(req.user._id,{ tfa: false }).then((rUser)=>{
+        res.json({ error: false,});
+    }).catch((err)=>{
+        res.json({ error: true,});
+    })
+});
+
 
 module.exports = router;
 

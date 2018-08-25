@@ -18,7 +18,7 @@ router.get("/dashboard", middlewares.isLoggedIn, (req, res)=>{
         if(!rUser){
             return res.redirect("/login");
         }
-        let isChecked = rUser.TFA;
+        let isChecked = rUser.tfa;
         res.render("dashboard", {username: rUser.username, isChecked});
     })
 });
