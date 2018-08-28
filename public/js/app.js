@@ -48,7 +48,7 @@ function promptSetup(data){
 
         <form action="/enable/tfa" method="POST">
             <label for="tfa-code"> <b>Your 2FA token from the app:</b> </label> <br>
-            <input class="tfa-code-input" placeholder="e.g. 123446" type="text" name="tfa-code" id="tfa-code"> <br>
+            <input class="tfa-code-input" placeholder="e.g. 123446" type="text" name="tfa" id="tfa-code"> <br>
             <button class="btn btn-primary marB" type="submit">Set Up 2FA</button> 
         </form>
     `);

@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/ThalKod/node-2fa#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "js-sha512": "^0.8.0",
     "mongoose": "^5.1.5",
     "nodemon": "^1.17.5",
     "passport": "^0.4.0",
