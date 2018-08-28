@@ -323,3 +323,9 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 	display: none;
 	color: #4AC234;
 }
+
+/* Form */
+
+.marB{
+	margin-bottom: 15px;
+}
