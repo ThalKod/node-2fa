@@ -16,7 +16,8 @@ router.post("/enable/tfa", isLoggedIn, (req, res)=>{
         const verified = speakeasy.totp.verify({
             secret: secretBase32,
             encoding: 'base32',
-            token: req.body.tfa
+            token: req.body.tfa,
+            window: 2
           });
           
         if(verified){

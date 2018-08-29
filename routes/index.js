@@ -13,7 +13,7 @@ router.get("/", (req, res)=>{
 });
 
 // rendering the dashboard
-router.get("/dashboard", middlewares.isLoggedIn, (req, res)=>{
+router.get("/dashboard", middlewares.isLoggedIn, middlewares.isTfa, (req, res)=>{
     User.findById(req.user.id).then((rUser)=>{
         if(!rUser){
             return res.redirect("/login");
