@@ -2,6 +2,7 @@ const express = require("express");
 const speakeasy = require('speakeasy');
 const router = express.Router();
 const User = require("../models/user");
+const middlewares = require("../middlewares/index");
 const { isLoggedIn } = require("../middlewares/index");
 
 
@@ -29,6 +30,15 @@ router.post("/enable/tfa", isLoggedIn, (req, res)=>{
         console.log(err);
     })
 });
+
+router.get("/verification/tfa", middlewares.isLoggedIn, (req, res)=>{
+    User.findById(req.user._id).then((rUser)=>{
+        if(!rUser.tfa){
+            res.redirect("/");
+        }
+        res.render("verifaction");
+    })
+})
 
 
 module.exports = router;
