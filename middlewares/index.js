@@ -12,8 +12,9 @@ module.exports =  {
         User.findById(req.user._id).then((rUser)=>{
             if(rUser.tfa){
                 res.redirect("/verification/tfa");
+            }else{
+                next();
             }
-            next();
         });
     }
 };

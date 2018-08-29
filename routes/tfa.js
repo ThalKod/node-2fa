@@ -34,11 +34,13 @@ router.post("/enable/tfa", isLoggedIn, (req, res)=>{
 router.get("/verification/tfa", middlewares.isLoggedIn, (req, res)=>{
     User.findById(req.user._id).then((rUser)=>{
         if(!rUser.tfa){
-            res.redirect("/");
+            return res.redirect("/");
         }
-        res.render("verifaction");
+        res.render("verification");
     })
-})
+});
+
+
 
 
 module.exports = router;
