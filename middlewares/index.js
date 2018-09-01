@@ -16,5 +16,18 @@ module.exports =  {
                 next();
             }
         });
+    },
+    ensureTfa: (req, res, next)=>{
+        User.findById(req.user._id).then((rUser)=>{
+            if(rUser.tfa){
+                if(rUser.secret_key.authenticated){
+                    next();
+                }else{
+                    res.redirect("/verification/tfa");
+                }
+            }else{
+                next();
+            }
+        })
     }
 };

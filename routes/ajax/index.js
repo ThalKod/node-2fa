@@ -18,7 +18,7 @@ router.post("/users/secret", isLoggedIn, (req, res)=>{
         // const otpAuthUrl = speakeasy.otpauthURL({ secret: secret.base32, label: rUser.username + " Node-2fa" });
 
         QRCode.toDataURL(secret.otpauth_url,(err, image_data)=>{
-            rUser.secret_key = secret.base32;
+            rUser.secret_key.secret = secret.base32;
             rUser.save();
 
             res.json({ error: false, activate, data: { secret: secret.base32, secret_uri:  image_data}});

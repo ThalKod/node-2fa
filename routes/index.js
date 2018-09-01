@@ -13,7 +13,7 @@ router.get("/", (req, res)=>{
 });
 
 // rendering the dashboard
-router.get("/dashboard", middlewares.isLoggedIn, middlewares.isTfa, (req, res)=>{
+router.get("/dashboard", middlewares.isLoggedIn, middlewares.ensureTfa, (req, res)=>{
     User.findById(req.user.id).then((rUser)=>{
         if(!rUser){
             return res.redirect("/login");
@@ -54,10 +54,15 @@ router.get("/login", (req, res)=>{
 
 // handling login
 router.post("/login", passportLocal.authenticate("local", {
-    successRedirect: "/dashboard",
+    // successRedirect: "/dashboard",
     failureRedirect: "/login"
-}), (req, res)=>{
-    console.log("login");
+}), (req, res, next)=>{
+    User.findById(req.user._id).then((rUser)=>{
+        next();
+    });
+    
+}, middlewares.isTfa, (req, res)=>{
+    res.redirect("/dashboard");
 });
 
 // hanling login with github
@@ -76,9 +81,13 @@ router.get('/auth/github/callback', passportGithub.authenticate('github', { fail
 
 
 // loggin out
-router.get("/logout", (req, res)=>{
-    req.logout();
-    res.redirect("/");
+router.get("/logout", middlewares.isLoggedIn, (req, res)=>{
+    User.findById(req.user._id).then((rUser)=>{
+        rUser.secret_key.authenticated = false;
+        rUser.save();
+        req.logOut();
+        res.redirect("/");
+    });
 });
 
 

@@ -10,7 +10,11 @@ const userSchema = new mongoose.Schema({
     password: String,
     githubId: String,
     secret_key: {
-        type: Object,
+        secret: String,
+        authenticated: {
+            type: Boolean,
+            default: false
+        }
     },
     tfa:{
         type: Boolean,
