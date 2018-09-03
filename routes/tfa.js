@@ -54,8 +54,7 @@ router.post("/verification/tfa", middlewares.isLoggedIn, (req, res)=>{
             secret: secretBase32,
             encoding: 'base32',
         });
-        console.log("Token should be :", token);
-        console.log("Token is :", req.body.tfa);
+        
         const verified = speakeasy.totp.verify({
             secret: secretBase32,
             encoding: 'base32',

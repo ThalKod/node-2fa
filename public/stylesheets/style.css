@@ -7,6 +7,7 @@ body {
     line-height: 30px;
 	text-align: center;
 	margin-bottom: 50px;
+	background-color: #fcfcfc;
 }
 
 strong { font-weight: 500; }
@@ -287,7 +288,8 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 .tfa-box{
 	margin: auto;
 	width: 75%;
-	border: 1px solid black;
+	border: 1px solid grey;
+	box-shadow: 2px 2px 5px 5px #888888;
 	display: none;
 }
 
