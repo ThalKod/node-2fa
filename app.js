@@ -8,6 +8,7 @@ const tfa = require("./routes/tfa");
 const expressSession = require("express-session");
 const passport = require("passport");
 
+const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/node2fa";
 
 // Configure app
 app.set("view engine", "ejs");
@@ -28,7 +29,7 @@ app.use(passport.session());
 
 // configure mongoose and DB connection
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/node2fa", { reconnectTries: Number.MAX_VALUE }).then((db =>{
+mongoose.connect(DATABASE_URL, { reconnectTries: Number.MAX_VALUE }).then((db =>{
     // boot
     app.listen(5000, ()=>{
         console.log("listenning on 5000");
