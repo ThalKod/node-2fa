@@ -7,7 +7,7 @@
 
 ![Node-2fa](https://github.com/ThalKod/node-2fa/blob/master/preview.png)
 
-[Demo](https://dropit0.herokuapp.com/)
+[Demo](https://node-tfa.herokuapp.com/login)
 
 # :floppy_disk: Installation
 
