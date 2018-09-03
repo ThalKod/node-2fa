@@ -9,6 +9,7 @@ const expressSession = require("express-session");
 const passport = require("passport");
 
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/node2fa";
+const PORT = process.env.PORT || 5000;
 
 // Configure app
 app.set("view engine", "ejs");
@@ -31,8 +32,8 @@ app.use(passport.session());
 mongoose.Promise = global.Promise;
 mongoose.connect(DATABASE_URL, { reconnectTries: Number.MAX_VALUE }).then((db =>{
     // boot
-    app.listen(5000, ()=>{
-        console.log("listenning on 5000");
+    app.listen(PORT, ()=>{
+        console.log("listenning on " + PORT);
     });
 })).catch(dbErr =>{
     console.log("Connection Error : ", dbErr.message);
