@@ -24,7 +24,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "js-sha512": "^0.8.0",
-    "mongoose": "^5.1.5",
+    "mongoose": "^5.3.12",
     "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
